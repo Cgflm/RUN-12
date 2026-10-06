@@ -1,63 +1,50 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include <Windows.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 int main()
 {
-	int win = 12, player, computer, open;
-	float num1, num2=1, c, game;
-	printf("¹æÔò£ºË­ÏÈµ½12Ë­¾ÍÓ®\n¿ªÊ¼£¿(0/1)");
-	scanf("%d", &open);
-	if (open == 1)
+	SetConsoleOutputCP(CP_UTF8);  
+	SetConsoleCP(CP_UTF8);
+	srand(time(0));
+	int win = 12, player, computer=0,look=2,ster=0;
+	float num1, num2 = 1, c, game=0,open=0;
+	printf("è§„åˆ™ï¼šè°å…ˆåˆ°12è°å°±èµ¢\n");
+	do
 	{
-		num2 = 0;
-		for (game = 0; game < win; game == num2)
+		if (game == win)
 		{
-			
-			printf("ÄãµÄ»ØºÏ\nÊäÈëÄãÒªÌí¼ÓµÄÊı£¨1/2£©\n");
-			scanf("%f", &num1);
-			printf("Ä¿Ç°gameÖµ£º%f\n", game);
-			if (num1==1||num1==2)
+			printf("æ¸¸æˆç»“æŸ\n");
+			if (look==1)
 			{
-				printf("ÄãÊäÈëµÄÊı×ÖÊÇ£º%f\n", num1);
-				c = num2 + num1;
-				num2 = num2 + num1;
-			printf("Ä¿Ç°Êı×Ö£º%f\n", num2);
-				if (num2<12)
-				{
-					if (c / 2 == 1 || c / 2 == 2 || c / 2 == 3 || c / 2 == 4 || c / 2 == 5 || c / 2 == 6)
-					{
-						num2 =num2 + 2;
-						printf("µçÄÔÊäÈëµÄÊı×ÖÊÇ£º2\n");
-					}
-					else
-					{
-						num2 =num2 + 1;
-						printf("µçÄÔÊäÈëµÄÊı×ÖÊÇ£º1\n");
-					}
-					printf("Ä¿Ç°Êı×Ö£º%f\n", num2);
-				}
-				else if (num2 == 12)
-				{
-					printf("ÄãÓ®ÁË\n");
-					return 0;
-
-				}
-				
+				printf("ä½ èµ¢äº†\n");
 			}
-			else
+			else if (look==2)
 			{
-				printf("ÊäÈë´íÎó£¬ÇëÖØĞÂÊäÈë\n");
+				printf("ä½ è¾“äº†");
 			}
-	
-
+			ster = 1;
 		}
-		printf("%f\n", num2);
-	}
-	else
-	{
-		printf("ÓÎÏ·½áÊø\n");
-		return 0;
-	}
-	
-	return 0;
+		else
+		{
+			if(look==2)
+			{ 
+				printf("è¯·è¾“å…¥ï¼ˆ0æˆ–1ï¼‰\n");
+				scanf("%d", &player);
+				game += player;
+				look = 1;
+				printf("ä½ åŠ äº†%d\næ€»æ•°ä¸º%.0f\n", player, game);
+			}
+			else if (look==1)
+			{
+				computer = rand() % 2;
+				game += computer;
+				look = 2;
+				printf("ç”µè„‘åŠ äº†%d\nç°åœ¨çš„æ•°ä¸º>>>%.0f<<<\n", computer, game);
+			}
+		}
+
+	}	while (ster < 1);
+return 0;
 }
